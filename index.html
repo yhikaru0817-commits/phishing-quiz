@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="大学生向け：フィッシング詐欺・なりすましメールを見抜く練習ができる学習ゲーム（学習用の模擬画面）">
+  <meta name="color-scheme" content="light dark">
+  <title>フィッシング見抜きトレーニング</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skipLink">本文へ移動</a>
+
+  <!-- 全ページで常に表示する「学習用の模擬画面」表示 -->
+  <div class="training-banner" role="note">
+    <span class="training-banner__icon" aria-hidden="true">⚠</span>
+    <span data-i18n="banner">これは学習用の模擬画面です。実在の大学・企業とは関係なく、リンクはどこにも移動しません。</span>
+  </div>
+
+  <header class="app-header">
+    <p class="app-title" data-i18n="appTitle">フィッシング見抜きトレーニング</p>
+    <button type="button" class="btn btn--ghost btn--small" id="open-settings" aria-haspopup="dialog">
+      <span aria-hidden="true">⚙</span> <span data-i18n="settings">設定</span>
+    </button>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- 読み込み中 -->
+    <section class="screen" id="screen-loading" aria-busy="true">
+      <p data-i18n="loading">読み込み中…</p>
+    </section>
+
+    <!-- スタート画面 -->
+    <section class="screen" id="screen-start" aria-labelledby="start-heading" hidden>
+      <h1 id="start-heading" tabindex="-1" data-i18n="startHeading">偽メールを見抜く力をつけよう</h1>
+      <div class="card card--note">
+        <p data-i18n="startBackground"></p>
+      </div>
+      <h2 class="h3" data-i18n="howToHeading">遊び方</h2>
+      <ol class="steps">
+        <li data-i18n="howTo1"></li>
+        <li data-i18n="howTo2"></li>
+        <li data-i18n="howTo3"></li>
+        <li data-i18n="howTo4"></li>
+      </ol>
+      <p class="muted" data-i18n="startTime"></p>
+
+      <div class="card">
+        <h2 class="h3" data-i18n="settingsHeading">表示の設定</h2>
+        <div class="settings-slot" data-settings-prefix="start"></div>
+      </div>
+
+      <p class="notice notice--en" data-en-only data-i18n="enFallback" hidden></p>
+      <p class="notice" data-storage-notice hidden></p>
+      <p class="muted small" data-i18n="privacy"></p>
+
+      <button type="button" class="btn btn--primary btn--large" id="start-button" data-i18n="start">始める</button>
+    </section>
+
+    <!-- 出題画面（中身は app.js が作ります） -->
+    <section class="screen" id="screen-quiz" aria-labelledby="quiz-heading" hidden></section>
+
+    <!-- 結果画面（中身は app.js が作ります） -->
+    <section class="screen" id="screen-result" aria-labelledby="result-heading" hidden></section>
+
+    <!-- 読み込みエラー -->
+    <section class="screen" id="screen-error" aria-labelledby="error-heading" hidden>
+      <h1 id="error-heading" tabindex="-1" data-i18n="errorHeading">問題を読み込めませんでした</h1>
+      <p data-i18n="loadError"></p>
+      <pre class="error-detail" id="error-detail"></pre>
+    </section>
+  </main>
+
+  <dialog id="settings-dialog" aria-labelledby="settings-dialog-title">
+    <div class="dialog-body">
+      <h2 id="settings-dialog-title" class="h3" data-i18n="settingsHeading">表示の設定</h2>
+      <div class="settings-slot" data-settings-prefix="dialog"></div>
+      <p class="notice" data-storage-notice hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="btn btn--ghost" id="reset-records" data-i18n="reset">記録を消去</button>
+        <button type="button" class="btn btn--primary" id="close-settings" data-i18n="close">閉じる</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="visually-hidden" id="sr-live" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
